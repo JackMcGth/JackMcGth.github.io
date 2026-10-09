@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111922">
+  <title>Roomie Roulette — Dorm Chore Board</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header class="page-header">
+      <h1>Roomie Roulette</h1>
+      <p class="subtitle">Roll the chore. Cover your share. Keep the dorm livable.</p>
+    </header>
+
+    <section class="board" aria-label="Dorm chore planner">
+      <section class="setup-grid">
+        <div class="panel">
+          <h2>Who's in the room?</h2>
+          <p class="hint">Add each roommate's name, then press Enter.</p>
+          <form id="roommate-form" class="add-form">
+            <label class="sr-only" for="roommate-name">Roommate name</label>
+            <input id="roommate-name" name="roommate" maxlength="30" placeholder="e.g. Jake" autocomplete="off" required>
+            <button class="icon-button" type="submit" aria-label="Add roommate" title="Add roommate">+</button>
+          </form>
+          <ul id="roommate-list" class="chip-list" aria-label="Roommates"></ul>
+        </div>
+
+        <div class="panel">
+          <h2>Chore pool</h2>
+          <p class="hint">The roll picks from these. Tap a chore to switch it off.</p>
+          <ul id="chore-pool" class="pool-list" aria-label="Chore pool"></ul>
+          <p id="pool-count" class="small-note"></p>
+        </div>
+      </section>
+
+      <section class="slot-section" aria-labelledby="slot-heading">
+        <h2 id="slot-heading">Today's roll</h2>
+        <div class="slot-machine" aria-live="polite" aria-atomic="true">
+          <div class="slot-reel">
+            <span class="slot-label">Assigned to</span>
+            <div id="slot-name" class="slot-name">Ready?</div>
+          </div>
+          <div class="slot-reel">
+            <span class="slot-label">Chore</span>
+            <div id="slot-chore" class="slot-chore">Hit roll to find out</div>
+          </div>
+        </div>
+        <button id="spin-button" class="spin-button" type="button">Roll today's chore</button>
+        <p id="status-message" class="status-message" role="status">Add at least one roommate to get started.</p>
+      </section>
+
+      <section class="calendar-section" aria-labelledby="cal-heading">
+        <div class="section-header">
+          <h2 id="cal-heading">Chore calendar</h2>
+          <div class="cal-actions">
+            <button id="plan-button" class="secondary-button" type="button">Plan next 14 days</button>
+            <button id="clear-plan" class="text-button" type="button">Clear upcoming</button>
+          </div>
+        </div>
+        <p class="hint">Plan fills the coming two weeks with random chores, split evenly across the room. Tap any day to see it or reroll it.</p>
+
+        <div class="cal-nav">
+          <button id="cal-prev" class="nav-button" type="button" aria-label="Previous month">&lsaquo;</button>
+          <div id="cal-title" class="cal-title" aria-live="polite"></div>
+          <button id="cal-next" class="nav-button" type="button" aria-label="Next month">&rsaquo;</button>
+        </div>
+        <div class="cal-weekdays" aria-hidden="true">
+          <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+        </div>
+        <div id="cal-grid" class="cal-grid" role="grid" aria-labelledby="cal-title"></div>
+
+        <div id="day-detail" class="day-detail" aria-live="polite"></div>
+
+        <h3 class="subhead">Next 7 days</h3>
+        <ul id="upcoming-list" class="upcoming-list"></ul>
+      </section>
+
+      <section class="history-section">
+        <div class="section-header">
+          <h2>Roll history</h2>
+          <button id="clear-history" class="text-button" type="button">Clear history</button>
+        </div>
+        <p class="hint">Recent rolls show up here, so nobody can claim they weren't told.</p>
+        <ul id="history-list" class="history-list">
+          <li id="empty-history" class="empty-history">Nothing rolled yet.</li>
+        </ul>
+      </section>
+    </section>
+
+    <footer class="footer-note">Built for shared rooms. Do your part.</footer>
+  </main>
+</body>
+</html>
